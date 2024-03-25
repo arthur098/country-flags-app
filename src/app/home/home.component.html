@@ -1,14 +1,36 @@
-<p>home works!</p>
+<div class="main-section">
+  <form [formGroup]="form">
+    <div class="form-flex">
+      <mat-form-field appearance="outline">
+        <mat-icon matIconPrefix>search</mat-icon>
+        <input matInput placeholder="Search for a country..." formControlName="country" (keyup)="filter()">
+      </mat-form-field>
 
-<div *ngFor="let flag of flags;">
-  <mat-card style="width: 25%;">
-    <img mat-card-image [src]="flag.flag" alt="">
-    <mat-card-content>
-      <h4>{{ flag.name }}</h4>
+      <mat-form-field appearance="outline">
+        <mat-select placeholder="Filter by region" (selectionChange)="filter()" formControlName="region">
+          <mat-option value=""></mat-option>
+          <mat-option [value]="region" *ngFor="let region of regions;">{{region}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </form>
 
-      <span></span>
-      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+  <div class="content">
+    <mat-card *ngFor="let flag of flags;" style="margin-bottom: 80px;">
+      <img loading="lazy" style="width: 350px; max-width: 500px;" mat-card-image [src]="flag.flag" alt="">
+      <mat-card-content>
+        <h4>{{ flag.name }}</h4>
 
-    </mat-card-content>
-  </mat-card>
+        <b>Population:</b>
+        <p>{{ flag.population }}</p>
+
+        <b>Region:</b>
+        <p>{{ flag.region }}</p>
+
+        <b>Capital:</b>
+        <p>{{ flag.capital }}</p>
+
+      </mat-card-content>
+    </mat-card>
+  </div>
 </div>
