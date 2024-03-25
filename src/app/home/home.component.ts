@@ -1,5 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {MatCard, MatCardContent, MatCardImage} from "@angular/material/card";
+import { Component, OnInit } from '@angular/core';
+import { MatCard, MatCardContent, MatCardImage } from '@angular/material/card';
 import { FlagService } from '../../service/flag.service';
 import { FlagInfoModel } from '../../model/FlagInfoModel';
 import { NgFor } from '@angular/common';
