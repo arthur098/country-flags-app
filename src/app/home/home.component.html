@@ -1,36 +1,23 @@
 <div class="main-section">
-  <form [formGroup]="form">
-    <div class="form-flex">
-      <mat-form-field appearance="outline">
-        <mat-icon matIconPrefix>search</mat-icon>
-        <input matInput placeholder="Search for a country..." formControlName="country" (keyup)="filter()">
-      </mat-form-field>
+  <section id="flag-card-section">
+    <form [formGroup]="form">
+      <div class="form-flex">
+        <mat-form-field appearance="outline">
+          <mat-icon matIconPrefix>search</mat-icon>
+          <input matInput placeholder="Search for a country..." formControlName="country" (keyup)="filter()">
+        </mat-form-field>
 
-      <mat-form-field appearance="outline">
-        <mat-select placeholder="Filter by region" (selectionChange)="filter()" formControlName="region">
-          <mat-option value=""></mat-option>
-          <mat-option [value]="region" *ngFor="let region of regions;">{{region}}</mat-option>
-        </mat-select>
-      </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-select placeholder="Filter by region" (selectionChange)="filter()" formControlName="region">
+            <mat-option value="">Filter by Region</mat-option>
+            <mat-option [value]="region" *ngFor="let region of regions;">{{region}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </form>
+
+    <div class="content">
+      <cf-flag-card *ngFor="let flag of flags;" [flag]="flag"></cf-flag-card>
     </div>
-  </form>
-
-  <div class="content">
-    <mat-card *ngFor="let flag of flags;" style="margin-bottom: 80px;">
-      <img loading="lazy" style="width: 350px; max-width: 500px;" mat-card-image [src]="flag.flag" alt="">
-      <mat-card-content>
-        <h4>{{ flag.name }}</h4>
-
-        <b>Population:</b>
-        <p>{{ flag.population }}</p>
-
-        <b>Region:</b>
-        <p>{{ flag.region }}</p>
-
-        <b>Capital:</b>
-        <p>{{ flag.capital }}</p>
-
-      </mat-card-content>
-    </mat-card>
-  </div>
+  </section>
 </div>

@@ -1,0 +1,22 @@
+<mat-card class="flag-card">
+  <img loading="lazy" mat-card-image [src]="flag?.flag" [alt]="flag?.name">
+  <mat-card-content>
+    <h4>{{ flag?.name }}</h4>
+
+    <div class="info">
+      <b>Population:</b>&nbsp;
+      <p>{{ flag?.population | number: '1.0-0'  }}</p>
+    </div>
+
+    <div class="info">
+      <b>Region:</b>&nbsp;
+      <p>{{ flag?.region }}</p>
+    </div>
+
+    <div class="info">
+      <b>Capital:</b>&nbsp;
+      <p>{{ flag?.capital }}</p>
+    </div>
+
+  </mat-card-content>
+</mat-card>

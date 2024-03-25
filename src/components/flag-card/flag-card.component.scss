@@ -1,0 +1,18 @@
+.flag-card {
+  margin-bottom: 80px;
+  cursor: pointer;
+  min-height: 515px;
+   img {
+     width: 350px;
+     max-width: 500px;
+   }
+}
+
+.info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+   p {
+     margin: 5px 0 5px 0;
+   }
+}

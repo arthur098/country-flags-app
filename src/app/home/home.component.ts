@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { MatCard, MatCardContent, MatCardImage } from '@angular/material/card';
 import { FlagService } from '../../service/flag.service';
 import { FlagInfoModel } from '../../model/FlagInfoModel';
 import { NgForOf } from '@angular/common';
@@ -8,14 +7,13 @@ import { MatInput } from '@angular/material/input';
 import { MatIcon } from '@angular/material/icon';
 import { MatOption, MatSelect } from '@angular/material/select';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FlagCardComponent } from '../../components/flag-card/flag-card.component';
+import { MatButton } from '@angular/material/button';
 
 @Component({
   selector: 'cf-home',
   standalone: true,
   imports: [
-    MatCard,
-    MatCardImage,
-    MatCardContent,
     MatFormField,
     MatLabel,
     MatInput,
@@ -24,7 +22,9 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
     NgForOf,
     MatSelect,
     MatOption,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FlagCardComponent,
+    MatButton
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
