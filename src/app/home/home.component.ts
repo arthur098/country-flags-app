@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FlagService } from '../../service/flag.service';
 import { FlagInfoModel } from '../../model/FlagInfoModel';
-import { NgForOf } from '@angular/common';
+import { DecimalPipe, NgForOf } from '@angular/common';
 import { MatFormField, MatLabel, MatPrefix } from '@angular/material/form-field';
 import { MatInput } from '@angular/material/input';
 import { MatIcon } from '@angular/material/icon';
@@ -24,7 +24,8 @@ import { MatButton } from '@angular/material/button';
     MatOption,
     ReactiveFormsModule,
     FlagCardComponent,
-    MatButton
+    MatButton,
+    DecimalPipe
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
@@ -40,6 +41,7 @@ export class HomeComponent implements OnInit {
     country: new FormControl(''),
     region: new FormControl('')
   });
+  selectedFlag: FlagInfoModel|null = null;
 
   ngOnInit(): void {
     this.flagService.findFlagsInformations().subscribe((result: FlagInfoModel[]) => {
@@ -57,5 +59,43 @@ export class HomeComponent implements OnInit {
     const region = this.form.value.region;
 
     this.flags = this.flagList.filter(flag => flag.name.toUpperCase().includes(country.toUpperCase()) && (flag.region === region || !region));
+  }
+
+  selectFlag(flag: FlagInfoModel) {
+    this.selectedFlag = flag;
+    this.disableFlagCardSection();
+  }
+
+  back() {
+    this.selectedFlag = null;
+    this.disableDetailSection();
+  }
+
+  private disableFlagCardSection() {
+    const flagCardMainSection = document.getElementById('flag-card-section');
+    const detailSection = document.getElementById('detail-section');
+    if(flagCardMainSection !== null) {
+      flagCardMainSection.style.width = '0';
+      flagCardMainSection.style.height = '0';
+      flagCardMainSection.style.transform = 'scaleX(0)';
+      if(detailSection !== null) {
+        detailSection.style.width = '100%';
+        detailSection.style.transform = 'scaleX(1)';
+      }
+    }
+  }
+
+  private disableDetailSection() {
+    const flagCardMainSection = document.getElementById('flag-card-section');
+    const detailSection = document.getElementById('detail-section');
+    if(flagCardMainSection !== null) {
+      flagCardMainSection.style.width = '100%';
+      flagCardMainSection.style.height = '';
+      flagCardMainSection.style.transform = '';
+      if(detailSection !== null) {
+        detailSection.style.width = '0';
+        detailSection.style.transform = 'scaleX(0)';
+      }
+    }
   }
 }

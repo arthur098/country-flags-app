@@ -17,7 +17,74 @@
     </form>
 
     <div class="content">
-      <cf-flag-card *ngFor="let flag of flags;" [flag]="flag"></cf-flag-card>
+      <cf-flag-card *ngFor="let flag of flags;" [flag]="flag" (click)="selectFlag(flag)"></cf-flag-card>
+    </div>
+  </section>
+  <section id="detail-section">
+    <button mat-raised-button (click)="back()">
+      <mat-icon>arrow_back</mat-icon>
+      Back
+    </button>
+
+    <div class="detail-wrapper">
+
+      <img [src]="selectedFlag?.flag" alt="" style="max-width: 450px;">
+
+      <div class="info-wrapper">
+        <h2>{{selectedFlag?.name}}</h2>
+
+        <div class="info-details">
+          <div>
+            <div class="info">
+              <b>Native Name:</b>&nbsp;
+              <span>{{ selectedFlag?.nativeName }}</span>
+            </div>
+
+            <div class="info">
+              <b>Population:</b>&nbsp;
+              <span>{{ selectedFlag?.population | number: '1.0-0' }}</span>
+            </div>
+
+            <div class="info">
+              <b>Region:</b>&nbsp;
+              <span>{{ selectedFlag?.region }}</span>
+            </div>
+
+            <div class="info">
+              <b>Sub Region:</b>&nbsp;
+              <span>{{ selectedFlag?.subregion }}</span>
+            </div>
+
+            <div class="info">
+              <b>Capital:</b>&nbsp;
+              <span>{{ selectedFlag?.capital }}</span>
+            </div>
+          </div>
+
+          <div class="domain-info">
+            <div class="info">
+              <b>Top Level Domain:</b>&nbsp;
+              <span *ngFor="let topLevelDomain of selectedFlag?.topLevelDomain">{{ topLevelDomain }}</span>
+            </div>
+
+            <div class="info">
+              <b>Currencies:</b>&nbsp;
+              <span *ngFor="let currency of selectedFlag?.currencies ">{{ currency.name }}</span>
+            </div>
+
+            <div class="info">
+              <b>Languages:</b>&nbsp;
+              <span *ngFor="let language of selectedFlag?.languages; last as isLast">{{ language?.name  + (!isLast ? ',&nbsp;' : '') }}</span>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <b>Border Countries:</b>&nbsp;
+          <button class="border-countries" mat-stroked-button *ngFor="let border of selectedFlag?.borders;">{{ border }}</button>
+        </div>
+      </div>
+
     </div>
   </section>
 </div>
