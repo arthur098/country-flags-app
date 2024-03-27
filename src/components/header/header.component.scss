@@ -1,5 +1,9 @@
 
-header {
+.header.dark-theme {
+    background-color: hsl(209, 23%, 22%) !important;
+}
+
+.header {
   nav {
     display: flex;
     flex-direction: row;

@@ -9,6 +9,11 @@
 // Be sure that you only ever include this mixin once!
 @include mat.core();
 
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
+
+$dark-blue-color: hsl(209, 23%, 22%);
+$very-dark-blue-color: hsl(207, 26%, 17%);
+
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
@@ -30,6 +35,14 @@ $country-flags-app-theme: mat.define-light-theme((
   density: 0
 ));
 
+$country-flags-app-dark-theme: mat.define-dark-theme((
+  color: (
+    primary: $country-flags-app-primary,
+    accent: $country-flags-app-accent,
+    warn: $country-flags-app-warn,
+  )
+));
+
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
@@ -38,8 +51,36 @@ $country-flags-app-theme: mat.define-light-theme((
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body {
+  margin: 0;
+  font-family: 'Nunito Sans', "Helvetica Neue", sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 800;
+}
+
+b {
+  font-weight: 700;
+}
 
 .container {
   margin: 0 50px;
+}
+
+.dark-theme {
+  @include mat.all-component-colors($country-flags-app-dark-theme);
+  background-color: $very-dark-blue-color;
+  color: white;
+  input::placeholder, select::placeholder {
+    color: white !important;
+  }
+  .mat-mdc-card-content,
+  .mat-mdc-raised-button:not(:disabled){
+    background-color: $dark-blue-color;
+  }
+}
+
+@media(prefers-color-scheme: dark) {
+  @include mat.all-component-colors($country-flags-app-dark-theme);
 }

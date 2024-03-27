@@ -19,5 +19,17 @@ export class HeaderComponent {
     } else {
       body.classList.add(themeClass);
     }
+    this.toggleHeaderDarkTheme(themeClass);
+  }
+
+  private toggleHeaderDarkTheme(themeClass: string) {
+    const header = document.querySelector('.header');
+    if(header !== null) {
+      if(header.classList.contains(themeClass)) {
+        header.classList.remove(themeClass);
+      } else {
+        header.classList.add(themeClass);
+      }
+    }
   }
 }
