@@ -8,7 +8,7 @@
         </mat-form-field>
 
         <mat-form-field appearance="outline">
-          <mat-select placeholder="Filter by region" (selectionChange)="filter()" formControlName="region">
+          <mat-select (selectionChange)="filter()" formControlName="region">
             <mat-option value="">Filter by Region</mat-option>
             <mat-option [value]="region" *ngFor="let region of regions;">{{region}}</mat-option>
           </mat-select>
@@ -79,9 +79,11 @@
           </div>
         </div>
 
-        <div>
+        <div class="border-countries">
           <b>Border Countries:</b>&nbsp;
-          <button class="border-countries" mat-stroked-button *ngFor="let border of selectedFlag?.borders;">{{ border }}</button>
+          <div class="border-country-btn">
+            <button mat-stroked-button *ngFor="let border of selectedFlag?.borders;">{{ border }}</button>
+          </div>
         </div>
       </div>
 
