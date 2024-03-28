@@ -80,7 +80,3 @@ b {
     background-color: $dark-blue-color;
   }
 }
-
-@media(prefers-color-scheme: dark) {
-  @include mat.all-component-colors($country-flags-app-dark-theme);
-}

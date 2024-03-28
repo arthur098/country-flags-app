@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
 import { MatButton } from '@angular/material/button';
 
@@ -9,7 +9,14 @@ import { MatButton } from '@angular/material/button';
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
+
+  ngOnInit(): void {
+    if(window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      this.toggleDarkMode();
+    }
+  }
+
   toggleDarkMode() {
     const themeClass = 'dark-theme';
     const body = document.body;
